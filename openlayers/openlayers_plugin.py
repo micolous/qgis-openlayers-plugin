@@ -31,6 +31,7 @@ from openlayers_plugin_layer_type import OpenlayersPluginLayerType
 from weblayers.weblayer_registry import WebLayerTypeRegistry
 from weblayers.google_maps import OlGooglePhysicalLayer, OlGoogleStreetsLayer, OlGoogleHybridLayer, OlGoogleSatelliteLayer
 from weblayers.osm import OlOpenStreetMapLayer, OlOpenCycleMapLayer, OlOCMLandscapeLayer, OlOCMPublicTransportLayer, OlOSMHumanitarianDataModelLayer
+from weblayers.boardconnect_maps import OlBoardConnectMapsLayer
 from weblayers.bing_maps import OlBingRoadLayer, OlBingAerialLayer, OlBingAerialLabelledLayer
 from weblayers.apple_maps import OlAppleiPhotoMapLayer
 from weblayers.osm_stamen import OlOSMStamenTonerLayer, OlOSMStamenWatercolorLayer, OlOSMStamenTerrainLayer
@@ -99,6 +100,8 @@ class OpenlayersPlugin:
         self._olLayerTypeRegistry.register(OlMapQuestOpenAerialLayer())
 
         self._olLayerTypeRegistry.register(OlAppleiPhotoMapLayer())
+
+        self._olLayerTypeRegistry.register(OlBoardConnectMapsLayer())
 
         for group in self._olLayerTypeRegistry.groups():
             groupMenu = group.menu()
