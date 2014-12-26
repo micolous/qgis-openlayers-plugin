@@ -141,6 +141,7 @@ class OpenlayersPlugin:
     self.olLayerTypeRegistry.add( OlLayerType(self, 'Stamen Toner/OSM', 'stamen_icon.png', 'stamen_toner.html', True) )
     self.olLayerTypeRegistry.add( OlLayerType(self, 'Stamen Watercolor/OSM', 'stamen_icon.png', 'stamen_watercolor.html', True) )
     self.olLayerTypeRegistry.add( OlLayerType(self, 'Stamen Terrain-USA/OSM', 'stamen_icon.png', 'stamen_terrain.html', True) )
+    self.olLayerTypeRegistry.add( OlLayerType(self, 'BoardConnect Satellite', 'boardconnect.png', 'boardconnect.html', True) )
     # Overview
     self.olOverview = OLOverview( iface, self.olLayerTypeRegistry )
     self.dlgAbout = AboutDialog(iface)

@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenLayers BoardConnect Layer</title>
+    <link rel="stylesheet" href="qgis.css" type="text/css">
+    <script src="OpenLayers-2.8.js"></script>
+    <script src="OlOverviewMarker.js"></script>
+    <script type="text/javascript">
+        var map;
+        var loadEnd;
+        var oloMarker; // OpenLayer Overview Marker
+        function init() {
+            map = new OpenLayers.Map('map', {
+                theme: null,
+                controls: [],
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326"),
+                units: "m",
+                maxResolution: 39135.758475,
+                maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34),
+                resolutions: [39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.4961688, 305.7480844]
+            });
+
+            loadEnd = false;
+            function layerLoadStart(event)
+            {
+              loadEnd = false;
+            }
+            function layerLoadEnd(event)
+            {
+              loadEnd = true;
+            }
+
+var bc = new OpenLayers.Layer.TMS( "TMS Overlay", "http://map.boardconnect.aero/tiles/",  { 
+				layername: 'BaseLayer',
+				type: 'png', alpha: true,
+				isBaseLayer: true,
+				serviceVersion: '',
+				layername: '',
+				wrapDateLine: false,
+				tileExtent: map.mapBounds,
+				displayOutsideMaxExtent:true,
+				eventListeners: {
+					'loadstart': layerLoadStart,
+					'loadend': layerLoadEnd
+				}
+			});
+            map.addLayer(bc);
+            map.addControl(new OpenLayers.Control.Attribution());
+            map.setCenter(new OpenLayers.LonLat(0, 0), 2);
+            oloMarker = new OlOverviewMarker(map, getPathUpper(document.URL) + '/x.png');
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="map"></div>
+  </body>
+</html>
